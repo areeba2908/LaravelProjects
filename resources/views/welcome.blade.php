@@ -22,9 +22,10 @@
     
  
     <div> <h1 class="text-center"> LIBRARY PORTAL</h1></div></br>
+    <div> <h3 class="text-center"> Hi <span style="color:blue">{{$user}}!!</span></h3></div></br>
     <a href="/showStudents" target="_self">List of Registered Students</a></br>
     <a href="/showBooks" target="_self">List of Available BOOKS</a></br>
 
-    <a href="{{ url('/logoutUser')}}"><button class="btn btn-danger btn-sm" >Logout</button></a>
+</br><a href="{{ url('/logoutUser')}}"><button class="btn btn-danger btn-sm" >Logout</button></a>
     </body>
 </html>

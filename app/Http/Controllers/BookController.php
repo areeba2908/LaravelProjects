@@ -13,6 +13,7 @@ class BookController extends Controller
         //$student = Book::findOrFail(99);
         //$books = Book::get();
         $users = DB::table('students')->rightJoin('books', 'student_id', '=', 'students.id')->get();
+
         return view('showBooks', compact('users'));
         //return $student; //return JSON
     }

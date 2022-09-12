@@ -48,11 +48,12 @@ class UserLoginController extends Controller
 
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('/welcome')->withSuccess('You have Successfully loggedin');
+            $user = DB::table('users')->where('email', $request['email'])->value('name');
+            //echo "$user";
+            return view('/welcome',compact('user'))->withSuccess('You have Successfully loggedin');
         }
   
-        return redirect('loginpage')->withSuccess('Oppes! You have entered invalid credentials');
-        //return view ('registrationpage')->with('completed', 'You are Logged in');
+        return redirect('/')->withSuccess('Oppes! You have entered invalid credentials');
     }
 
     public function logoutUser() {
