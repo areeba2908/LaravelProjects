@@ -60,12 +60,17 @@ Route::get('/practiceBook','BookController@practiceBook');
 
 
 //authentication for user
-Route::get('/', 'UserLoginController@loginpage')->name('loginpage');
+Route::get('/', 'UserLoginController@loginpage')->name('loginpage');  //oprn page
 
-Route::get('/registrationpage', 'UserLoginController@registrationpage');
+Route::get('/registrationpage', 'UserLoginController@registrationpage');  //open registration page
 
 Route::post('/registerUser', 'UserLoginController@registerUser')->name('user.register');
 
 Route::post('/loginUser', 'UserLoginController@loginUser')->name('user.login');
 
 Route::get('/logoutUser', 'UserLoginController@logoutUser');
+
+
+#reviews
+Route::get('/reviewSession', 'ReviewController@reviewSession');
+Route::post('/postReview', 'ReviewController@postReview');

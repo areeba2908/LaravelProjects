@@ -35,7 +35,9 @@ class UserLoginController extends Controller
         $user->email = $request['email'];
         $user->password = Hash::make($request['password']);
         $user->save();
-       return redirect('/welcome')->with('completed', 'You are Registered');
+        $user = DB::table('users')->where('email', $request['email'])->first();
+        //echo "$user";
+        return view('/welcome',compact('user'))->withSuccess('You have Successfully Registered');
 
     }
 
@@ -48,7 +50,7 @@ class UserLoginController extends Controller
 
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            $user = DB::table('users')->where('email', $request['email'])->value('name');
+            $user = DB::table('users')->where('email', $request['email'])->first();
             //echo "$user";
             return view('/welcome',compact('user'))->withSuccess('You have Successfully loggedin');
         }
