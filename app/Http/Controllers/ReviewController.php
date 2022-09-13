@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Review;
 use App\Book;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -17,8 +18,10 @@ class ReviewController extends Controller
      */
     public function reviewSession()
     {
-        $reviews = DB::table('users')->rightJoin('reviews', 'user_id', '=', 'users.id')->get();
-        $books = DB::table('books')->get();
+        $users = User::getUsersForReviews();
+        $reviews=Review::getReviewsForUsers();
+        //echo "$reviews";
+        $books= Book::getAllBooks();
         return view('reviewSession', compact('reviews','books'));
     }
 
@@ -31,12 +34,8 @@ class ReviewController extends Controller
     public function postReview(Request $request)
     {
         $id = Auth::user()->id;
-        //$currentuser = User::find($id);
-        $newreview = new Review;
-        $newreview->reviews = $request['addANote'];
-        $newreview->book = $request['bookname'];
-        $newreview->user_id = $id;
-        $newreview->save();
+        $data =$request->all();
+        Review::addNewPost($data, $id);        
         return redirect('/reviewSession');
     }
 

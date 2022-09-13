@@ -51,7 +51,7 @@
           <button type="submit" class="btn btn-block btn-danger">Register</button>
       </form>
 
-      <a href="/loginpage"> Login here </a>
+      <a href="/"> Login here </a>
 
     </div>
      </div>

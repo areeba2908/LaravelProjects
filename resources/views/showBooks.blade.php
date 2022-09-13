@@ -41,7 +41,7 @@
             <td>{{$books->bookname}}</td>
             <td>{{$books->available}}</td>
             <td>{{$books->student_id}}</td>
-            <td>{{$books->name}}</td>
+            <td>{{optional($books->student)->name}}</td>
             @if(is_null($books->student_id))
             {
               <td class="text-center"><a href="{{ url('/assignBook')}}/{{$books->id}}"><button class="btn btn-primary" >Assign Book</button></a></td>

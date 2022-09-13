@@ -45,7 +45,7 @@
 
             <div class="d-flex justify-content-between">
               <div class="d-flex flex-row align-items-center">
-                <p class="small mb-0 ms-2"><strong>Review By: {{$reviews->name}}</strong></p>
+                <p class="small mb-0 ms-2"><strong>Review By: {{$reviews->user->name}}</strong></p>
               </div>
               <div class="d-flex flex-row align-items-center">
                 <p class="small text-muted mb-0">Book: {{$reviews->book}}</p>
