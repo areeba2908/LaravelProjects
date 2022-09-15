@@ -1,20 +1,11 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@include('header')
 
-        <title>Laravel</title>
+@section('title', 'form')
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
+@section ('content')
 
-    </head>
-    <body>
-        <div class="card push-top">
-  <div class="card-header">
-    Add User
-  </div>
+  
+<br>
   <div class="card-body">
     <h1 class="text-center"> Registeration of Students</h1>
     @if ($errors->any())
@@ -29,18 +20,23 @@
       <form method="post" action="{{ route('student.register') }}">
           <div class="form-group">
               @csrf
-              <label for="name">Name</label>
-              <input type="text" class="form-control" name="name"/>
+              <label for="studentname">Name</label>
+              <input type="text" class="form-control" name="studentname"/>
+              @if ($errors->has('name'))
+                  <span class="text-danger">Select a book name</span>
+                @endif
           </div>
           <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" class="form-control" name="email"/>
+              <label for="studentemail">Email</label>
+              <input type="studentemail" class="form-control" name="studentemail"/>
+              @if ($errors->has('email'))
+                  <span class="text-danger">Select a book name</span>
+                @endif
           </div>
-          
-          
+        
           <button type="submit" class="btn btn-block btn-danger">Create Student</button>
       </form>
   </div>
 </div>
-    </body>
-</html>
+  
+@include('footer')

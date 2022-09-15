@@ -20,7 +20,6 @@ class ReviewController extends Controller
     {
         $users = User::getUsersForReviews();
         $reviews=Review::getReviewsForUsers();
-        //echo "$reviews";
         $books= Book::getAllBooks();
         return view('reviewSession', compact('reviews','books'));
     }
@@ -33,6 +32,7 @@ class ReviewController extends Controller
      */
     public function postReview(Request $request)
     {
+        Review::validateReview($request);
         $id = Auth::user()->id;
         $data =$request->all();
         Review::addNewPost($data, $id);        

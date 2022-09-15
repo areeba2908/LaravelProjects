@@ -4,67 +4,51 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Book;
+use App\Student;
 use Illuminate\Support\Facades\DB;
 
 class BookController extends Controller
 {
     public function showBooks()
     {
-        //$student = Book::findOrFail(99);
-        $users = Book::getBookswithUsers(); //joins
-        return view('showBooks', compact('users'));
-        //return $student; //return JSON
+          $books = Book::getBookswithUsers();
+          return view('showBooks', compact('books'));
     }
 
     public function bookForm()
     {
-        return view('bookForm');
-    }
+          return view('bookForm');
+     }
 
     public function registerBook(Request $request)
    {
-        $book = new Book;
-        $book->bookname = $request['bookname'];
-        
-        $book->save();
-       return redirect('/showBooks')->with('completed', 'Student has been saved!');
+          $data =$request->all();    
+          Book::createBook($data);
+          return redirect('/showBooks')->with('completed', 'Student has been saved!');
    }
 
-   public function assignBook($id)
+   public function assignBook($id)       //open view to assign book
     {
-        $book = Book::find($id);
-        //$books = DB::table('books')->get();
-        $students = DB::table('students')->get();
-        return view('assignBook', compact('book','students'));
+          $book = Book::getBookwithId($id);
+          $students = Student::getStudents();
+          return view('assignBook', compact('book','students'));
     }
 
-    public function updateBook( $id, Request $request) //assigned
+    public function updateBook( $id, Request $request) //update, assigned to student and updated in db
    {
-    //$selectedBookId = $request->get('bookid');
-    $book = Book::find($id);
-    $book->available= 0;
-    $book->student_id = $request['student_id'];
-    $book->save();
-    return  redirect('/showBooks');
+          $data =$request->all();   
+          Book::putBook($id,$data);
+          return  redirect('/showBooks');
    }
 
-   public function returnBook($id)
-   {
-    $book = Book::find($id);
-    $book->available = 1;
-    $book->student_id = null;
-    $book->save();
-    return  redirect('/showBooks');
+   public function returnBook($id)   ////update, returned to library and updated in db
+   {  
+          Book::returnBooktoLib($id);
+          return  redirect('/showBooks');
    }
 
-   public function practiceBook ()
+   public function practiceBook ()   //use this function with /practiceBook
    {
-    //$a = Book::find(1);
-    $a = DB::table('books')->where('bookname', 'welcome home')->get();
-    return $a;
-    //echo $a->available;
-    //$email = DB::table('users')->where('name', 'John')->value('email');
-    //return view('assignBook', ['article' => $bookname]);
-
+          Book::practiceQueries();
    }
 }

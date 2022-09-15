@@ -6,16 +6,13 @@ namespace App;
 //use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Book;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Student extends Model
 {
- //   use HasFactory;
+    use SoftDeletes;
     protected $fillable = ['name', 'email'];
 
-    //public function books()
-    //{
-     //   return $this->belongsTo(Book::class);
-    //}
     //protected $fillable = ['bookname'];
     public function books()
     {
@@ -28,4 +25,39 @@ class Student extends Model
     }
 
     //$student->books //select * from books where student id = student id
+
+    public static function validateStudent ($request){
+        $request->validate([
+            'studentname' => 'required|max:255',
+            'studentemail' => 'required|max:255',
+            ]);
+    }
+
+    public static function getStudents () {
+        return Student::all();
+    }
+
+    public static function getStudentwithId ($id) {
+        return Student::find($id);
+    }
+
+    public static function createStudent ($request){
+        Student::create(array('name'=>$request['studentname'], 'email'=>$request['studentemail']));
+        //$student = new Student;
+        //$student->name = $request['name'];
+        //$student->email = $request['email'];
+        //$student->save();
+        //Student::create(request(['name', 'email']));
+    }
+
+    public static function putStudent ($request,$id){
+        $student = Student::find($id);
+        $student->name = $request['studentname'];
+        $student->email = $request['studentemail'];
+        $student->save();
+    }
+
+    public static function deleteStudent($id){
+        Student::find($id)->delete();
+    }
 }

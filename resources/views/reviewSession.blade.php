@@ -1,23 +1,15 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <title>Title</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+@include('header')
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  </head>
-  <body>
-      
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+@section('title', 'reviews')
+
+@section ('content')
+
   
-    <div class="row d-flex justify-content-center">
+<br>
+
+
+    
+  <div class="row d-flex justify-content-center">
   <div class="col-md-10 col-lg-10">
     <div class="card shadow-0 border" style="background-color: #f0f2f5;">
       <div class="card-body p-4">
@@ -26,6 +18,11 @@
           @csrf
           <label class="form-label" for="addANote">+ Add a note</label>
           <input type="text" id="addANote" name= "addANote" class="form-control" placeholder="Type comment..." />
+ 
+          @if ($errors->has('addANote'))
+            <span class="text-danger">Kindly add Comment</span>
+          @endif
+
         </div>
               <label for="student_id">Review About: </label>
                 <select name="bookname" id="bookname">
@@ -35,7 +32,10 @@
                             {{$books->bookname}}
                             </option>
                             @endforeach
-                </select>
+                </select><br>
+                @if ($errors->has('bookname'))
+                  <span class="text-danger">Select a book name</span>
+                @endif
         <button type="submit" class="btn btn-block btn-danger">Post</button><br>
 
         @foreach($reviews as $reviews)
@@ -60,5 +60,4 @@
     </div>
   </div>
 </div>
-</body>
-</html>
+@include('footer')

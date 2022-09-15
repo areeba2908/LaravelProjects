@@ -11,6 +11,15 @@ class Review extends Model
     {
         return $this->belongsTo(User::class, 'user_id'); //select * from User where user_id = 1;
     }
+
+    public static function validateReview ($request)
+    {
+        $request->validate([
+            'bookname'=>'required',
+            'addANote'=>'required',
+        ]);
+    }
+
     public static function addNewPost($request,$id)
     {
         $newreview = new Review;
@@ -21,6 +30,6 @@ class Review extends Model
     }
 
     public static function getReviewsForUsers() {
-        return Review::with('user:id,name')->get();
+        return Review::with('user:id,name')->get(); //calling user from above function
     }
 }

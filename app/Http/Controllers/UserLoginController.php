@@ -30,29 +30,22 @@ class UserLoginController extends Controller
             'password' => 'required|confirmed',
             'password_confirmation' => 'required'
         ]);
-        $user = User::create(request(['name', 'email', 'password']));
+        $user= User::createUser($request);
         auth()->login($user);
-        $user = DB::table('users')->where('email', $request['email'])->first();
-        
-        return view('/welcome',compact('user'))->withSuccess('You have Successfully Registered');
+        $user = User::where('email', $request['email'])->first();
+        return view('/welcome',compact('user'))->withMessage("Logged In");;
 
     }
 
     public function loginUser(Request $request)
     {
-        $request->validate([
-            'email'=>'required',
-            'password'=>'required'
-        ]);
-
+        User::validateUser($request);
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             //Auth::login($user);
-            $user = DB::table('users')->where('email', $request['email'])->first();
-            //echo "$user";
+            $user = User::where('email', $request['email'])->first();
             return view('/welcome',compact('user'))->withSuccess('You have Successfully loggedin');
         }
-        
         return redirect('/')->withSuccess('Oppes! You have entered invalid credentials');
     }
 

@@ -20,11 +20,11 @@ Route::get('/welcome', function () {
 Route::get('sendmail', function () {
    
     $details = [
-        'title' => 'Mail from Nicesnippets.com',
-        'body' => 'This is for testing email using smtp'
+        'title' => 'Hello',
+        'body' => 'i am just testing this email'
     ];
    
-    \Mail::to('areeba.ayub@nextgeni.com')->send(new \App\Mail\MyTestMail($details));
+    \Mail::to('areebaayub2908@gmail.com')->send(new \App\Mail\MyTestMail($details));
    
     dd("Email is Sent.");
 });
@@ -32,16 +32,19 @@ Route::get('sendmail', function () {
 //STUDENTS Data
 Route::get('/showStudents','StudentController@showStudents');
 
-Route::post('/showForm', 'StudentController@showForm'); 
+Route::get('/showForm', 'StudentController@showForm'); 
 
 Route::post('/registerStudent', 'StudentController@registerStudent')->name('student.register'); //insert
-
-Route::get('/deleteStudent/{id}','StudentController@deleteStudent');
 
 Route::get('/editStudent/{id}','StudentController@editStudent')->name('student.edit'); //open form for edit
 
 Route::post('/updateStudent/{id}', 'StudentController@updateStudent')->name('student.update'); //update in database
 
+Route::get('/deleteStudent/{id}','StudentController@deleteStudent');  //permanent delete
+
+Route::get('/softDeleteStudent/{id}','StudentController@softDeleteStudent'); //soft delete
+
+Route::get('/restoreAllSoftDeletes','StudentController@restoreAllSoftDeletes');
 
 //BOOKS DATA
 Route::get('/showBooks','BookController@showBooks');
@@ -60,7 +63,7 @@ Route::get('/practiceBook','BookController@practiceBook');
 
 
 //authentication for user
-Route::get('/', 'UserLoginController@loginpage')->name('loginpage');  //oprn page
+Route::get('/', 'UserLoginController@loginpage')->name('loginpage');  //open page
 
 Route::get('/registrationpage', 'UserLoginController@registrationpage');  //open registration page
 
@@ -73,4 +76,5 @@ Route::get('/logoutUser', 'UserLoginController@logoutUser');
 
 #reviews
 Route::get('/reviewSession', 'ReviewController@reviewSession');
+
 Route::post('/postReview', 'ReviewController@postReview');
