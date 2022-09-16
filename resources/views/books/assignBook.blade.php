@@ -1,12 +1,9 @@
-@include('header')
+@extends('layouts.app')
 
-@section('title', 'book assign form')
-
-@section ('content')
-
-  
-<br>
+@section('title', 'Main')
     
+@section('content')
+  
     <div class="card-body">
     <h1 class="text-center"> Assign Book to Student</h1>
    
@@ -33,4 +30,6 @@
           <button type="submit" class="btn btn-block btn-danger">Assigned</button>
       </form>
   </div>
-  @include('footer')
+
+  @endsection
+  @include('layouts.footer')

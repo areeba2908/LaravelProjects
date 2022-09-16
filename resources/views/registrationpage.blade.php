@@ -1,9 +1,8 @@
-@include('header')
+@extends('layouts.app')
 
-@section('title', 'user registration')
-
-@section ('content')
-
+@section('title', 'Main')
+    
+@section('content')
   
 <br>
     
@@ -51,5 +50,5 @@
     </div>
 </div>
 </div>
-
-    @include('footer')
+@endsection
+    @include('layouts.footer')

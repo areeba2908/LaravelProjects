@@ -30,7 +30,7 @@ class MyTestMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Test Mail')
+        return $this->subject('Libray Portal')
         ->view('email');
     }
 }

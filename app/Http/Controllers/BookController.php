@@ -12,12 +12,12 @@ class BookController extends Controller
     public function showBooks()
     {
           $books = Book::getBookswithUsers();
-          return view('showBooks', compact('books'));
+          return view('books.showBooks', compact('books'));
     }
 
     public function bookForm()
     {
-          return view('bookForm');
+          return view('books.bookForm');
      }
 
     public function registerBook(Request $request)
@@ -31,7 +31,7 @@ class BookController extends Controller
     {
           $book = Book::getBookwithId($id);
           $students = Student::getStudents();
-          return view('assignBook', compact('book','students'));
+          return view('books.assignBook', compact('book','students'));
     }
 
     public function updateBook( $id, Request $request) //update, assigned to student and updated in db

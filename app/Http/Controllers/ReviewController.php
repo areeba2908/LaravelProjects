@@ -21,7 +21,7 @@ class ReviewController extends Controller
         $users = User::getUsersForReviews();
         $reviews=Review::getReviewsForUsers();
         $books= Book::getAllBooks();
-        return view('reviewSession', compact('reviews','books'));
+        return view('reviews.reviewSession', compact('reviews','books'));
     }
 
     /**

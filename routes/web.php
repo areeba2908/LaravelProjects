@@ -13,21 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/welcome', function () {
-    return view('welcome');
-})->name('welcome');;
+Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('sendmail', function () {
-   
-    $details = [
-        'title' => 'Hello',
-        'body' => 'i am just testing this email'
-    ];
-   
-    \Mail::to('areebaayub2908@gmail.com')->send(new \App\Mail\MyTestMail($details));
-   
-    dd("Email is Sent.");
-});
+Route::get('/', 'HomeController@index')->name('home');
+
+
+//sendmail
+Route::get('mailForm','MailController@mailForm');
+
+Route::post('sendMail', 'MailController@sendMail')->name('send.mail');
+
 
 //STUDENTS Data
 Route::get('/showStudents','StudentController@showStudents');
@@ -62,19 +57,49 @@ Route::get('/returnBook/{id}','BookController@returnBook');
 Route::get('/practiceBook','BookController@practiceBook');
 
 
-//authentication for user
-Route::get('/', 'UserLoginController@loginpage')->name('loginpage');  //open page
-
-Route::get('/registrationpage', 'UserLoginController@registrationpage');  //open registration page
-
-Route::post('/registerUser', 'UserLoginController@registerUser')->name('user.register');
-
-Route::post('/loginUser', 'UserLoginController@loginUser')->name('user.login');
-
-Route::get('/logoutUser', 'UserLoginController@logoutUser');
-
-
-#reviews
+//reviews
 Route::get('/reviewSession', 'ReviewController@reviewSession');
 
 Route::post('/postReview', 'ReviewController@postReview');
+
+
+//authentication for user
+//Route::get('/', 'UserLoginController@loginpage')->name('loginpage');  //open page
+
+//Route::get('/registrationpage', 'UserLoginController@registrationpage');  //open registration page
+
+//Route::post('/registerUser', 'UserLoginController@registerUser')->name('user.register');
+
+//Route::post('/loginUser', 'UserLoginController@loginUser')->name('user.login');
+
+//Route::get('/logoutUser', 'UserLoginController@logoutUser');
+
+
+#Auth functions exploration
+Auth::routes();
+/*Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Auth\LoginController@login');
+
+// Registration Routes...
+Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('register', 'Auth\RegisterController@register');
+
+// Password Reset Routes...
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
+
+// Confirm Password (added in v6.2)
+Route::get('password/confirm', 'Auth\ConfirmPasswordController@showConfirmForm')->name('password.confirm');
+Route::post('password/confirm', 'Auth\ConfirmPasswordController@confirm');
+
+// Email Verification Routes...
+Route::get('email/verify', 'Auth\VerificationController@show')->name('verification.notice');
+Route::get('email/verify/{id}/{hash}', 'Auth\VerificationController@verify')->name('verification.verify'); // v6.x
+/* Route::get('email/verify/{id}', 'Auth\VerificationController@verify')->name('verification.verify'); // v5.x */
+// Route::get('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
+
+
+
+

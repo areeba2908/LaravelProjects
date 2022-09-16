@@ -1,12 +1,9 @@
-@include('header')
+@extends('layouts.app')
 
-@section('title', 'user login')
-
-@section ('content')
-
+@section('title', 'Main')
+    
+@section('content')
   
-<br>
-</br>
     <div class="jumbotron vertical-center">
     <div class="row d-flex justify-content-center">
     <div class="col-md-5 col-lg-6" >
@@ -38,4 +35,5 @@
      </div>
     </div>
 </div>
-@include('footer')
+@endsection
+@include('layouts.footer')

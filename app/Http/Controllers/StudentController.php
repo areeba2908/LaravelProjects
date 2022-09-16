@@ -12,7 +12,7 @@ class StudentController extends Controller
     public function showStudents()
     {
         $students = Student::getStudents();
-        return view('showStudents', compact('students'));
+        return view('students.showStudents', compact('students'));
         //$users = DB::table('books')->rightJoin('students', 'student_id', '=', 'students.id')->get();
         //$address = Student::find(3)->address; //address record against student id 3 in address table
         //$ifassigned = Book::all('bookname');
@@ -22,13 +22,14 @@ class StudentController extends Controller
 
     public function showForm()
     {
-        return view('showForm');
+        return view('students.showForm');
     }
 
    public function registerStudent(Request $request)
    {           
         Student::validateStudent($request);
         Student::createStudent($request);
+        session()->flash('success', 'Student Successfully Registered');
         return redirect('/showStudents')->with('completed', 'Student has been saved!');
    }
 
@@ -36,7 +37,7 @@ class StudentController extends Controller
    {
         $student = Student::getStudentwithId($id);
         $data = compact('student');
-        return view('/editForm')->with($data);
+        return view('students.editForm')->with($data);
    }
 
 /**
@@ -49,18 +50,21 @@ class StudentController extends Controller
    {
         $data =$request->all();
         Student::putStudent($data,$id);
+        session()->flash('success', 'Student Details updated.');
         return  redirect('/showStudents');
    }
 
    public function deleteStudent($id)
    {
      Student::deleteStudent($id);
+     session()->flash('success', 'Student deleted.');
      return redirect('/showStudents');
    }
 
    public function softDeleteStudent($id)  //soft delete
    {
-     Student::find($id)->delete();
+     Student::deleteStudent($id);
+     session()->flash('success', 'Student deleted.');
      return redirect('/showStudents');
    }
 

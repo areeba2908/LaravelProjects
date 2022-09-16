@@ -1,12 +1,9 @@
-@include('header')
+@extends('layouts.app')
 
-@section('title', 'book form')
-
-@section ('content')
-
-  
-<br>
+@section('title', 'Main')
     
+@section('content')
+
     <div class="card push-top">
   <div class="card-header">
   </div>
@@ -24,5 +21,5 @@
   </div>
 </div>
 
-
-@include('footer')
+@endsection
+@include('layouts.footer')

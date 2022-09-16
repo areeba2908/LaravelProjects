@@ -6,6 +6,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -56,7 +58,7 @@ class User extends Authenticatable
         //return $users;
     }
 
-    public static function createUsers($request) {
+    public static function createUser($request) {
         $user = User::create(array('name'=>$request['name'], 'email'=>$request['email'],'password'=>Hash::make($request['password'])));
         return $user;
     }

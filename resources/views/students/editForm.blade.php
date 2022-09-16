@@ -1,12 +1,11 @@
-@include('header')
+@extends('layouts.app')
 
-@section('title', 'edit student')
-
-@section ('content')
+@section('title', 'Main')
+    
+@section('content')
 
   
-<br>
-    
+
     <div class="card push-top">
   <div class="card-header">
     Edit User
@@ -39,5 +38,5 @@
   </div>
 </div>
 
-
-@include('footer')
+@endsection
+@include('layouts.footer')

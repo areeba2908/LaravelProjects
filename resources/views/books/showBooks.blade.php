@@ -1,11 +1,9 @@
-@include('header')
+@extends('layouts.app')
 
-@section('title', 'Books')
-
-@section ('content')
-
+@section('title', 'Main')
+    
+@section('content')
   
-<br>
   <table class="table">
     <thead>
         <tr class="table-warning">
@@ -47,4 +45,6 @@
     <button class="btn btn-danger btn-sm" type="submit">Add New Book</button>
     </form>
 <div>
-@include('footer')
+
+@endsection
+@include('layouts.footer')

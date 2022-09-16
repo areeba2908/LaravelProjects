@@ -1,19 +1,14 @@
-@include('header')
+@extends('layouts.app')
 
-@section('title', 'Students')
+@section('title', 'Main')
+    
+@section('content')
 
-@section ('content')
-
-<div class="push-top">
- @if(session()->get('success'))
-    <div class="alert alert-success">
-      {{ session()->get('success') }}  
-    </div><br />
-  @endif
-
-  <br>
-</br>
+@include('layouts.flashmessages')
+<div class="card shadow-0 border" style="background-color: #f0f2f5;">
+<div class="card-body p-4">
   <h3 class="text-center">Registered Students</h3>
+
   <table class="table">
     <thead>
         <tr class="table-warning">
@@ -38,9 +33,10 @@
         @endforeach
     </tbody>
   </table>
-  
-
-<a href="{{ url('/showForm')}}"><button class="btn btn-danger btn-sm">Register Student</button></a>
+  <a href="{{ url('/showForm')}}"><button class="btn btn-danger btn-sm">Register Student</button></a>
 <a href="{{ url('/restoreAllSoftDeletes')}}"><button class="btn btn-danger btn-sm" >Restore All</button></a> 
 <div>
-@include('footer')
+</div>
+</div>
+@endsection
+@include('layouts.footer')

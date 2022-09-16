@@ -28,8 +28,8 @@ class Student extends Model
 
     public static function validateStudent ($request){
         $request->validate([
-            'studentname' => 'required|max:255',
-            'studentemail' => 'required|max:255',
+            'name' => 'required|max:255',
+            'email' => 'required|max:255',
             ]);
     }
 
@@ -42,7 +42,7 @@ class Student extends Model
     }
 
     public static function createStudent ($request){
-        Student::create(array('name'=>$request['studentname'], 'email'=>$request['studentemail']));
+        Student::create(array('name'=>$request['name'], 'email'=>$request['email']));
         //$student = new Student;
         //$student->name = $request['name'];
         //$student->email = $request['email'];
@@ -52,8 +52,8 @@ class Student extends Model
 
     public static function putStudent ($request,$id){
         $student = Student::find($id);
-        $student->name = $request['studentname'];
-        $student->email = $request['studentemail'];
+        $student->name = $request['name'];
+        $student->email = $request['email'];
         $student->save();
     }
 

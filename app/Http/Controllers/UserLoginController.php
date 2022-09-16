@@ -33,8 +33,7 @@ class UserLoginController extends Controller
         $user= User::createUser($request);
         auth()->login($user);
         $user = User::where('email', $request['email'])->first();
-        return view('/welcome',compact('user'))->withMessage("Logged In");;
-
+        return view('/welcome',compact('user'))->withMessage('You have Successfully loggedin');;
     }
 
     public function loginUser(Request $request)
@@ -44,9 +43,10 @@ class UserLoginController extends Controller
         if (Auth::attempt($credentials)) {
             //Auth::login($user);
             $user = User::where('email', $request['email'])->first();
-            return view('/welcome',compact('user'))->withSuccess('You have Successfully loggedin');
+            session()->flash('success', 'Post successfully updated.');
+            return view('/welcome',compact('user'));
         }
-        return redirect('/')->withSuccess('Oppes! You have entered invalid credentials');
+        return redirect('/')->with('Oppes! You have entered invalid credentials');
     }
 
     public function logoutUser() {

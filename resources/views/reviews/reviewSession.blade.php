@@ -1,13 +1,8 @@
-@include('header')
+@extends('layouts.app')
 
-@section('title', 'reviews')
-
-@section ('content')
-
-  
-<br>
-
-
+@section('title', 'Main')
+    
+@section('content')
     
   <div class="row d-flex justify-content-center">
   <div class="col-md-10 col-lg-10">
@@ -60,4 +55,5 @@
     </div>
   </div>
 </div>
-@include('footer')
+@endsection
+@include('layouts.footer')

@@ -1,8 +1,8 @@
-@include('header')
+@extends('layouts.app')
 
-@section('title', 'form')
-
-@section ('content')
+@section('title', 'Main')
+    
+@section('content')
 
   
 <br>
@@ -20,15 +20,15 @@
       <form method="post" action="{{ route('student.register') }}">
           <div class="form-group">
               @csrf
-              <label for="studentname">Name</label>
-              <input type="text" class="form-control" name="studentname"/>
+              <label for="name">Name</label>
+              <input type="text" class="form-control" name="name"/>
               @if ($errors->has('name'))
                   <span class="text-danger">Select a book name</span>
                 @endif
           </div>
           <div class="form-group">
-              <label for="studentemail">Email</label>
-              <input type="studentemail" class="form-control" name="studentemail"/>
+              <label for="email">Email</label>
+              <input type="email" class="form-control" name="email"/>
               @if ($errors->has('email'))
                   <span class="text-danger">Select a book name</span>
                 @endif
@@ -38,5 +38,6 @@
       </form>
   </div>
 </div>
-  
-@include('footer')
+
+@endsection
+@include('layouts.footer')
