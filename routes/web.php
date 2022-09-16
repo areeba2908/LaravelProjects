@@ -27,7 +27,7 @@ Route::post('sendMail', 'MailController@sendMail')->name('send.mail');
 //STUDENTS Data
 Route::get('/showStudents','StudentController@showStudents');
 
-Route::get('/showForm', 'StudentController@showForm'); 
+Route::get('/showForm', 'StudentController@showForm'); //open register form 
 
 Route::post('/registerStudent', 'StudentController@registerStudent')->name('student.register'); //insert
 

@@ -133,6 +133,7 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'email'=>['required' => 'Kindly add your email :)'],
         
     ],
 

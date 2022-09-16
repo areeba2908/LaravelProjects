@@ -3,7 +3,12 @@
 @section('title', 'Main')
     
 @section('content')
-  
+
+@include('layouts.flashmessages')
+
+<div class="card shadow-0 border" style="background-color: #f0f2f5;">
+<div class="card-body p-4">
+  <h3 class="text-center">Available Books In Library</h3>
   <table class="table">
     <thead>
         <tr class="table-warning">
@@ -30,7 +35,7 @@
             @else
             {
               <td class="text-center">
-                  <a  href="{{ url('/returnBook')}}/{{$books->id}}"><button class="btn btn-danger btn-sm" >Book Return</button></a> 
+                  <a  href="{{ url('/returnBook')}}/{{$books->id}}"><button class="btn btn-danger btn-sm" >Return Book</button></a> 
               </td>
               
             }
@@ -45,6 +50,8 @@
     <button class="btn btn-danger btn-sm" type="submit">Add New Book</button>
     </form>
 <div>
+          </div>
+          </div>
 
 @endsection
 @include('layouts.footer')

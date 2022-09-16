@@ -24,7 +24,8 @@ class BookController extends Controller
    {
           $data =$request->all();    
           Book::createBook($data);
-          return redirect('/showBooks')->with('completed', 'Student has been saved!');
+          session()->flash('success', 'Book Successfully Registered');
+          return redirect('/showBooks');
    }
 
    public function assignBook($id)       //open view to assign book
@@ -38,12 +39,14 @@ class BookController extends Controller
    {
           $data =$request->all();   
           Book::putBook($id,$data);
+          session()->flash('success', 'Book Assigned');
           return  redirect('/showBooks');
    }
 
    public function returnBook($id)   ////update, returned to library and updated in db
    {  
           Book::returnBooktoLib($id);
+          session()->flash('success', 'Book has been Returned by Student');
           return  redirect('/showBooks');
    }
 

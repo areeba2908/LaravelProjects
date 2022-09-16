@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Student;
 use App\Book;
 use Illuminate\Support\Facades\DB;
+use Session;
 
 class StudentController extends Controller
 {
@@ -27,10 +28,17 @@ class StudentController extends Controller
 
    public function registerStudent(Request $request)
    {           
-        Student::validateStudent($request);
-        Student::createStudent($request);
-        session()->flash('success', 'Student Successfully Registered');
-        return redirect('/showStudents')->with('completed', 'Student has been saved!');
+        try {
+          Student::validateStudent($request);
+          Student::createStudent($request);
+          session()->flash('success', 'Student Successfully Registered');
+          return redirect('/showStudents');
+        }
+        catch(\Exception $e) {
+          Session::flash('error', json_encode($e->getMessage(), true));
+          //echo 'Message: ' .$e->getMessage();
+        }
+        return redirect()->back();
    }
 
    public function editStudent($id)
