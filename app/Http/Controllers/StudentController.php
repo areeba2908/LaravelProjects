@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helper;
 use Illuminate\Http\Request;
 use App\Student;
 use App\Book;
@@ -28,16 +29,17 @@ class StudentController extends Controller
 
    public function registerStudent(Request $request)
    {           
-        try {
-          Student::validateStudent($request);
-          Student::createStudent($request);
-          session()->flash('success', 'Student Successfully Registered');
-          return redirect('/showStudents');
-        }
-        catch(\Exception $e) {
-          Session::flash('error', json_encode($e->getMessage(), true));
-          //echo 'Message: ' .$e->getMessage();
-        }
+//        try {
+//          $validationError =  Student::validateStudent($request);
+            Helper::validateRequest($request, Student::validationRules);
+            Student::createStudent($request);
+            session()->flash('success', 'Student Successfully Registered');
+            return redirect('/showStudents');
+//        }
+//        catch(\Exception $e) {
+//          Session::flash('error', json_encode($e->getMessage(), true));
+//          //echo 'Message: ' .$e->getMessage();
+//        }
         return redirect()->back();
    }
 

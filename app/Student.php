@@ -13,6 +13,12 @@ class Student extends Model
     use SoftDeletes;
     protected $fillable = ['name', 'email'];
 
+    const validationRules= [
+        'name' => 'required|max:255',
+        'email' => 'required|max:255',
+
+    ];
+
     //protected $fillable = ['bookname'];
     public function books()
     {
@@ -26,12 +32,12 @@ class Student extends Model
 
     //$student->books //select * from books where student id = student id
 
-    public static function validateStudent ($request){
-        $request->validate([
-            'name' => 'required|max:255',
-            'email' => 'required|max:255',
-            ]);
-    }
+//    public static function validateStudent ($request){
+//        $request->validate([
+//            'name' => 'required|max:255',
+//            'email' => 'required|max:255',
+//            ]);
+//    }
 
     public static function getStudents () {
         return Student::all();

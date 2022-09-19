@@ -40,12 +40,13 @@
 
             <div class="d-flex justify-content-between">
               <div class="d-flex flex-row align-items-center">
-                <p class="small mb-0 ms-2"><strong>Review By: {{$reviews->user->name}}</strong></p>
+                <p class="small mb-0 ms-2"><strong>Review By: {{$reviews->user->name}} .</strong></p><b>
+                <p class="small mb-0 ms-2">{{$reviews->updated_at}}</p>
               </div>
               <div class="d-flex flex-row align-items-center">
                 <p class="small text-muted mb-0">Book: {{$reviews->book}}</p>
                 <i class="far fa-thumbs-up mx-2 fa-xs text-black" style="margin-top: -0.16rem;"></i>
-                <p class="small text-muted mb-0">3</p>
+                <p class="small text-muted mb-0"></p>
               </div>
             </div>
           </div>

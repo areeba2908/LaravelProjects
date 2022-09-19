@@ -1,15 +1,11 @@
 @extends('layouts.app')
 
 @section('title', 'Main')
-    
+
 @section('content')
 
-  
 
     <div class="card push-top">
-  <div class="card-header">
-    Edit User
-  </div>
   <div class="card-body">
     <h1 class="text-center">Edit Student Details</h1>
     @if ($errors->any())

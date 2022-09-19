@@ -28,12 +28,20 @@
         color: white;
         text-align: center;
         }
+        .logo-image{
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-top: -6px;
+        }
         </style>
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
+            <div class="logo-image"><img src="http://library-app.test/Images/202209190932booksimg.jpg" class="img-fluid"></div>
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Library Portal') }}
                 </a>
@@ -60,6 +68,11 @@
                                 </li>
                             @endif
                         @else
+                            @if(isset(Auth::user()->images))
+                                <div class="logo-image"><img src="http://library-app.test/Images/users/{{Auth::user()->images}}" class="img-fluid"></div>
+                            @else
+                            <div class="logo-image"><img src="http://library-app.test/Images/202209190935anygirl.png" class="img-fluid"></div>
+                            @endif
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}

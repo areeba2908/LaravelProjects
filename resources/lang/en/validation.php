@@ -134,6 +134,7 @@ return [
             'rule-name' => 'custom-message',
         ],
         'email'=>['required' => 'Kindly add your email :)'],
+        'bookname'=>['required' => 'Kindly enter book name '],
         
     ],
 

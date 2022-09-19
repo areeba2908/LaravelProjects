@@ -12,6 +12,10 @@ use Session;
 
 class UserLoginController extends Controller
 {
+    public function getAllUsers() {
+        $users= User::all();
+        return view('auth.showUsers',compact('users'));
+    }
     public function loginpage()
     {
         return view ('loginpage');

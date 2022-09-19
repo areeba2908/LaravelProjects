@@ -26,7 +26,7 @@
             <td>{{$students->email}}</td>
             
             <td class="text-center">
-              <a href="{{ url('/editStudent')}}/{{$students->id}}" class="btn btn-primary btn-sm">Edit</a>
+              <a href="{{ url('/editStudent')}}/{{$students->id}}"><button class="btn btn-primary btn-sm" >Edit</button></a>
                 <a href="{{ url('/softDeleteStudent')}}/{{$students->id}}"><button class="btn btn-danger btn-sm" >Delete</button></a> 
             </td>
         </tr>

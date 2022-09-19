@@ -44,7 +44,7 @@ Route::get('/restoreAllSoftDeletes','StudentController@restoreAllSoftDeletes');
 //BOOKS DATA
 Route::get('/showBooks','BookController@showBooks');
 
-Route::post('/bookForm', 'BookController@bookForm'); 
+Route::get('/bookForm', 'BookController@bookForm');
 
 Route::post('/registerBook', 'BookController@registerBook')->name('book.register'); //insert
 
@@ -64,7 +64,7 @@ Route::post('/postReview', 'ReviewController@postReview');
 
 
 //authentication for user
-//Route::get('/', 'UserLoginController@loginpage')->name('loginpage');  //open page
+Route::get('/showUsers', 'UserLoginController@getAllUsers');  //open page
 
 //Route::get('/registrationpage', 'UserLoginController@registrationpage');  //open registration page
 
@@ -77,6 +77,10 @@ Route::post('/postReview', 'ReviewController@postReview');
 
 #Auth functions exploration
 Auth::routes();
+
+Route::get('/addImage', 'Auth\ImageController@addImage');
+
+Route::post('/postImage', 'Auth\ImageController@postImage')->name('image.post');
 /*Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 

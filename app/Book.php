@@ -8,6 +8,11 @@ use App\Student;
 
 class Book extends Model
 {
+    protected $fillable = ['bookname'];
+    const validationRules= [
+        'bookname' => 'required'
+    ];
+
     public function student()
     {
         return $this->belongsTo(Student::class, 'student_id'); //select * from Student where bookid = 1;

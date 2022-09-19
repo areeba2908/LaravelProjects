@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 use App\Book;
 use App\Student;
 use Illuminate\Support\Facades\DB;
+use App\Helpers\Helper;
 
 class BookController extends Controller
 {
+
     public function showBooks()
     {
           $books = Book::getBookswithUsers();
@@ -22,10 +24,14 @@ class BookController extends Controller
 
     public function registerBook(Request $request)
    {
-          $data =$request->all();    
-          Book::createBook($data);
-          session()->flash('success', 'Book Successfully Registered');
-          return redirect('/showBooks');
+//       $request->validate([
+//           'bookname' => 'required',
+//       ]);
+       $validationError = Helper::validateRequest($request, Book::validationRules);
+       //$data =$request->all();
+       Book::createBook($request);
+       session()->flash('success', 'Book Successfully Registered');
+       return redirect('/showBooks');
    }
 
    public function assignBook($id)       //open view to assign book

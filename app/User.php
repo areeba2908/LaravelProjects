@@ -13,6 +13,9 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    const uploadImage=[
+
+    ];
     /**
      * The attributes that are mass assignable.
      *
