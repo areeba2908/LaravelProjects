@@ -27,14 +27,14 @@
             
             <td class="text-center">
               <a href="{{ url('/editStudent')}}/{{$students->id}}"><button class="btn btn-primary btn-sm" >Edit</button></a>
-                <a href="{{ url('/softDeleteStudent')}}/{{$students->id}}"><button class="btn btn-danger btn-sm" >Delete</button></a> 
+                <a href="{{ url('/softDeleteStudent')}}/{{$students->id}}"><button class="btn btn-danger btn-sm" >Delete</button></a>
             </td>
         </tr>
         @endforeach
     </tbody>
   </table>
   <a href="{{ url('/showForm')}}"><button class="btn btn-danger btn-sm">Register Student</button></a>
-<a href="{{ url('/restoreAllSoftDeletes')}}"><button class="btn btn-danger btn-sm" >Restore All</button></a> 
+<a href="{{ url('/restoreAllSoftDeletes')}}"><button class="btn btn-danger btn-sm" >Restore All</button></a>
 <div>
 </div>
 </div>
